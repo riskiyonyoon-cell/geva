@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Gevalio Haesa</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* ===== FIX SCROLL GLOBAL ===== */
+html, body{
+  min-height:100%;
+  width:100%;
+}
+
+body{
+  min-height:100vh;
+  width:100%;
+
+  display:flex;
+  justify-content:center;
+  align-items:flex-start; /* penting biar bisa scroll */
+
+  font-family:'Poppins',sans-serif;
+
+  background: radial-gradient(circle at top,#1d2b44 0%,#111827 55%,#070b12 100%);
+  background-attachment: fixed;
+
+  color:white;
+
+  padding:40px 16px;
+
+  overflow-x:hidden;
+  overflow-y:auto; /* KUNCI SCROLL */
+}
+
+/* STARS */
+.stars{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+}
+
+.stars span{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation:blink 4s infinite ease-in-out;
+}
+
+@keyframes blink{
+  0%,100%{opacity:.15; transform:scale(.8);}
+  50%{opacity:1; transform:scale(1.4);}
+}
+
+/* CARD */
+.card{
+  width:430px;
+  max-width:92%;
+
+  padding:40px 32px;
+
+  border-radius:32px;
+
+  background:rgba(255,255,255,.07);
+
+  border:1px solid rgba(255,255,255,.10);
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:0 25px 60px rgba(0,0,0,.45);
+
+  position:relative;
+  z-index:2;
+
+  animation:fade 1s ease;
+}
+
+/* CENTER FIX */
+.card{
+  margin:auto;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* TEXT */
+.small{
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  margin-bottom:18px;
+}
+
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;
+  line-height:1;
+  margin-bottom:24px;
+  font-weight:600;
+}
+
+.line{
+  width:70px;
+  height:1px;
+  background:rgba(255,255,255,.2);
+  margin-bottom:28px;
+}
+
+#text{
+  min-height:200px;
+  font-size:15px;
+  line-height:2;
+  color:rgba(255,255,255,.9);
+  transition:.4s;
+}
+
+.highlight{
+  font-weight:500;
+}
+
+/* COUNTER */
+.counter{
+  margin-top:14px;
+  text-align:right;
+  font-size:12px;
+  color:rgba(255,255,255,.4);
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  border:none;
+  border-radius:18px;
+  padding:15px;
+  margin-top:26px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+.next-btn,
+.yes{
+  background:linear-gradient(135deg,#ffffff,#dce9ff);
+  color:#10233f;
+}
+
+.no{
+  background:rgba(255,255,255,.06);
+  color:white;
+  border:1px solid rgba(255,255,255,.16);
+}
+
+/* PHOTO */
+.photo-wrap{
+  display:none;
+  margin-top:24px;
+  animation:show 1s ease;
+}
+
+.photo-wrap img{
+  width:100%;
+  border-radius:24px;
+}
+
+.caption{
+  margin-top:12px;
+  text-align:center;
+  font-size:13px;
+  line-height:1.8;
+  color:rgba(255,255,255,.72);
+}
+
+/* ANSWER */
+.answer-box{
+  display:none;
+  margin-top:30px;
+}
+
+.answer-title{
+  text-align:center;
+  line-height:1.9;
+  color:rgba(255,255,255,.92);
+  margin-bottom:18px;
+}
+
+.answer-buttons{
+  display:flex;
+  gap:12px;
+}
+
+.answer-buttons button{
+  margin-top:0;
+}
+
+/* SIGNATURE */
+.signature{
+  display:none;
+  margin-top:30px;
+  text-align:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;
+  color:rgba(255,255,255,.92);
+}
+
+/* ANIMATION */
+@keyframes show{
+  from{opacity:0; transform:translateY(12px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* ===== MOBILE ===== */
+@media (max-width:480px){
+
+  h1{
+    font-size:30px;
+    margin-bottom:18px;
+  }
+
+  #text{
+    font-size:14px;
+    line-height:1.8;
+    min-height:160px;
+  }
+
+  .signature{
+    font-size:22px;
+  }
+
+  button{
+    padding:13px;
+    font-size:13px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/06/27/audio_2458d6f1b8.mp3?filename=night-piano-144839.mp3">
+</audio>
+
+<div class="stars" id="stars"></div>
+
+<div class="card">
+
+  <div class="small">a quiet confession</div>
+
+  <h1>For<br>Gevalio Haesa</h1>
+
+  <div class="line"></div>
+
+  <div id="text"></div>
+
+  <div class="counter" id="counter"></div>
+
+  <div class="photo-wrap" id="photoWrap">
+
+    <img src="https://i.pinimg.com/736x/30/dd/ca/30ddca34014eb9f67cf27a6eae376ee1.jpg">
+
+    <div class="caption">
+      maybe this started quietly,
+      <br>
+      but somehow you became important to me.
+    </div>
+
+  </div>
+
+  <div class="answer-box" id="answerBox">
+
+    <div class="answer-title">
+      so geva...
+      <br>
+      will you be my boyfriend?
+      <br><br>
+      and honestly,
+      <br>
+      i think i'd be really happy
+      <br>
+      if your answer is yes.
+    </div>
+
+    <div class="answer-buttons">
+
+      <button class="yes" onclick="sendAnswer('YES 🤍')">Yes 🤍</button>
+      <button class="no" onclick="sendAnswer('NO 🙂')">No</button>
+
+    </div>
+
+  </div>
+
+  <div class="signature" id="signature">
+    — from someone
+    <br>
+    who truly likes you.
+  </div>
+
+  <button class="next-btn" id="nextBtn">· · ·</button>
+
+</div>
+
+<script>
+
+/* MUSIC */
+document.body.addEventListener('click', () => {
+  document.getElementById('music').play();
+}, { once:true });
+
+/* TEXT */
+const texts = [
+`Hi, Geva.`,
+`I’ve been thinking for a while about how I should say this.`,
+`And honestly... I still don’t know the perfect way.`,
+`Because some feelings are difficult to explain without sounding too much.`,
+`But I think you deserve honesty.`,
+`Maybe we haven’t known each other for that long.`,
+`Yet somehow, your presence feels familiar in a way I can’t really describe.`,
+`Talking to you became something I look forward to.`,
+`Not because you always try to impress me.`,
+`But because being around you feels easy.`,
+`tenang.`,
+`nenangin.`,
+`HHAHA MUT, aku suka banget sama kamu.`,
+`Aku suka cara kamu bikin semuanya terasa ringan tanpa perlu banyak usaha.`,
+`And little by little, you became part of my days without me realizing it.`,
+`There are moments when I suddenly remember our conversations and catch myself smiling.`,
+`And there are nights where I realize... you’ve been staying in my mind longer than anyone else.`,
+`I don’t think this is just admiration anymore.`,
+`Because if I’m being honest, I care about you more than I planned to.`,
+`And maybe this sounds simple.`,
+`But for me, it means a lot.`,
+`<span class="highlight">I genuinely like you, Geva.</span>`,
+`Not only because of who you are.`,
+`But because of how peaceful everything feels whenever you’re around.`,
+`And if one day I get the chance to be someone special in your life...`,
+`I think I’d be really happy about that.`
+];
+
+const textEl=document.getElementById("text");
+const counter=document.getElementById("counter");
+const nextBtn=document.getElementById("nextBtn");
+
+const photoWrap=document.getElementById("photoWrap");
+const answerBox=document.getElementById("answerBox");
+const signature=document.getElementById("signature");
+
+let i=0;
+
+textEl.innerHTML=texts[0];
+counter.innerHTML=`1 / ${texts.length}`;
+
+nextBtn.onclick=()=>{
+  textEl.style.opacity=0;
+
+  setTimeout(()=>{
+    i++;
+
+    if(i<texts.length){
+      textEl.innerHTML=texts[i];
+      counter.innerHTML=`${i+1} / ${texts.length}`;
+      textEl.style.opacity=1;
+    }else{
+      nextBtn.style.display="none";
+      counter.style.display="none";
+      textEl.innerHTML="Thank you for reading all of this.";
+      photoWrap.style.display="block";
+      answerBox.style.display="block";
+      signature.style.display="block";
+    }
+
+  },300);
+};
+
+function sendAnswer(answer){
+  const msg=encodeURIComponent(`Hi 🤍
+
+My answer is: ${answer}
+
+— from Gevalio Haesa`);
+
+  window.open(`https://www.instagram.com/direct/new/?text=${msg}`,'_blank');
+}
+
+/* STARS */
+const stars=document.getElementById("stars");
+
+for(let i=0;i<100;i++){
+  const s=document.createElement("span");
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+  s.style.animationDelay=Math.random()*5+"s";
+  stars.appendChild(s);
+}
+
+</script>
+
+</body>
+</html>
